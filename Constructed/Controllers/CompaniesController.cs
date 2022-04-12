@@ -10,9 +10,13 @@ namespace Constructed.Controllers
     public class CompaniesController : ControllerBase
     {
         private readonly CompaniesService _companiesService;
-        public CompaniesController(CompaniesService companiesService)
+        private readonly JobsService _jobsService;
+
+
+        public CompaniesController(CompaniesService companiesService, JobsService jobsService)
         {
             _companiesService = companiesService;
+            _jobsService = jobsService;
         }
 
         [HttpGet]
@@ -76,6 +80,22 @@ namespace Constructed.Controllers
             }
 
         }
+
+        [HttpGet("{id}/jobs")]
+        public ActionResult<List<Job>> GetAllCompanyJobs(int id)
+        {
+            try
+            {
+                List<Job> companyJobs = _jobsService.GetAllCompanyJobs(id);
+                return Ok(companyJobs);
+            }
+            catch (System.Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
+        }
+
 
 
     }
