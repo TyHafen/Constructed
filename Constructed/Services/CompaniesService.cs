@@ -1,26 +1,36 @@
 
+using System.Collections.Generic;
+using Constructed.Models;
+using Constructed.Repositories;
+
 namespace Constructed.Services
 {
     public class CompaniesService
     {
+        private readonly CompaniesRepository _companiesRepo;
+        public CompaniesService(CompaniesRepository companiesRepo)
+        {
+            _companiesRepo = companiesRepo;
+        }
+
         internal Company GetById(int id)
         {
-            throw new NotImplementedException();
+            return _companiesRepo.GetById(id);
         }
 
         internal List<Company> GetAll()
         {
-            throw new NotImplementedException();
+            return _companiesRepo.GetAll();
         }
 
-        internal void Delete(int id)
+        internal string Delete(int id)
         {
-            throw new NotImplementedException();
+            return _companiesRepo.Delete(id);
         }
 
-        internal Company Create(object companyData)
+        internal Company Create(Company companyData)
         {
-            throw new NotImplementedException();
+            return _companiesRepo.Create(companyData);
         }
     }
 }
